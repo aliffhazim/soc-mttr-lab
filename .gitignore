@@ -4,3 +4,4 @@ __pycache__/
 *.key
 wazuh-install-files.tar
 results/*.log
+results/timeline.json
