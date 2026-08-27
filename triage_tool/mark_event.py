@@ -7,7 +7,7 @@ def mark(event_id, phase):
     entry = {
         "event_id": event_id,
         "phase": phase,
-        "timestamp": datetime.datetime.now().isoformat()
+        "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat()
     }
     with open(LOG_FILE, "a") as f:
         f.write(json.dumps(entry) + "\n")
