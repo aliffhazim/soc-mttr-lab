@@ -5,3 +5,5 @@ __pycache__/
 wazuh-install-files.tar
 results/*.log
 results/*.log
+*.tar
+*.log
