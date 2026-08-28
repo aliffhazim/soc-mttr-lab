@@ -3,7 +3,5 @@ __pycache__/
 *.pem
 *.key
 wazuh-install-files.tar
-results/*.log
-results/*.log
 *.tar
 *.log
