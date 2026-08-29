@@ -54,12 +54,24 @@
 ```
 
 **Screenshots**
+
 ![Dashboard](docs/screenshots/01-dashboard-overview.png)
+*Figure 1: Wazuh dashboard, live agent connected, real alert volume.*
+
 ![MITRE mapping](docs/screenshots/02-mitre-dashboard-100010.png)
+*Figure 2: Alerts filtered to rule 100010, MITRE ATT&CK panel confirming Credential Stuffing.*
+
 ![Alert events](docs/screenshots/03-alert-events-list.png)
+*Figure 3: Six real detections with timestamps, the raw evidence behind Figure 2's chart.*
+
 ![Attack terminal](docs/screenshots/04-hydra-attack-terminal.png)
+*Figure 4: The actual credential-stuffing attack, launched from Kali against the target.*
+
 ![Report output](docs/screenshots/05-generate-report-output.png)
+*Figure 5: generate_report.py producing the real 8s-to-2s comparison automatically.*
+
 ![Detection rule](docs/screenshots/06-detection-rule-code.png)
+*Figure 6: The custom Wazuh rule itself, confirmed directly from the file.*
 
 **All bugs hit and resolved**
 - Disk too small for Wazuh's full stack, resized and repartitioned
