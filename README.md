@@ -1,6 +1,6 @@
-# soc-mttr-lab
+# SOC Incident Response Lab: Credential-Stuffing Detection
 
-> **Cut simulated incident response time from 8 seconds to 2 seconds, using a detection rule I designed, tuned, and defended myself.**
+ **Cut simulated incident response time from 8 seconds to 2 seconds, using a detection rule I designed, tuned, and defended myself.**
 
 ## Executive Summary
 - **The problem:** Undetected credential-based intrusions are expensive. [IBM's 2025 breach research](https://www.ibm.com/think/insights/data-matters/cost-of-a-data-breach) puts a $1.88M cost gap between fast and slow containment. It's also a theme large hardware vendors are addressing directly, [through hardware-based credential protection and passwordless strategies](https://www.dell.com/en-us/blog/how-to-weather-the-cyber-identity-crisis/).
