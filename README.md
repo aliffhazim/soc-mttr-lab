@@ -43,11 +43,11 @@ Engineered a Python pipeline to automatically measure response time end to end.
 
 | Function | What I Did |
 |---|---|
-| **Identify** | Researched current credential-stuffing prevalence to build a realistic, evidence-based scenario |
-| **Protect** | Tuned the detection threshold to 5 attempts/60s to avoid flagging genuine password mistakes, based on real-world lockout conventions |
-| **Detect** | Custom Wazuh rule flags the pattern live, mapped to MITRE T1110.004 |
-| **Respond** | Automated timestamp logging measured the full detect-to-contain window |
-| **Recover** | Found and fixed a stale-alert-matching bug inflating results; recommended key-based SSH, auto-lockout, and MFA for production hardening |
+| Identify | Researched current credential-stuffing prevalence to build a realistic, evidence-based scenario |
+| Protect | Tuned the detection threshold to 5 attempts/60s to avoid flagging genuine password mistakes, based on real-world lockout conventions |
+| Detect | Custom Wazuh rule flags the pattern live, mapped to MITRE T1110.004 |
+| Respond | Automated timestamp logging measured the full detect-to-contain window |
+| Recover | Found and fixed a bug where response times were measured against the wrong detection event, causing inflated results. Recommended key-based SSH, auto-lockout, and MFA for production hardening. |
 
 **Relevant to:** SOC Analyst · Incident Response · SIEM (Wazuh) · MITRE ATT&CK · Python · Detection Engineering · MTTR
 
