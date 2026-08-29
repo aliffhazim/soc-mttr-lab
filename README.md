@@ -86,3 +86,10 @@ python3 triage_tool/mark_event.py <run_id> triaged
 python3 triage_tool/mark_event.py <run_id> contained
 sudo python3 triage_tool/generate_report.py
 ```
+
+## References
+- IBM Cost of a Data Breach Report 2025 — https://www.ibm.com/reports/data-breach
+- Dell Technologies, "How To Weather the Cyber Identity Crisis" — https://www.dell.com/en-us/blog/how-to-weather-the-cyber-identity-crisis/
+- Journal of Petroleum Technology, alert-triage automation in energy/critical infrastructure — https://jpt.spe.org/oil-and-gas-data-multiply-so-do-cybersecurity-threats
+- MITRE ATT&CK, T1110.004 Credential Stuffing — https://attack.mitre.org/techniques/T1110/004/
+- NIST SP 800-61r3, Incident Response Recommendations (CSF 2.0) — https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf
