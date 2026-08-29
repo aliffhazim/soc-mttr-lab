@@ -19,3 +19,15 @@
 | hydra02 | 2s |
 
 *Two runs, not a statistical trend, a real demonstration that response time is trainable.*
+
+## Response Lifecycle ([NIST CSF 2.0](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf))
+
+| Function | What I Did |
+|---|---|
+| **Identify** | Researched current credential-stuffing prevalence to build a realistic, evidence-based scenario |
+| **Protect** | Tuned the detection threshold to 5 attempts/60s, aligned with fail2ban's real-world convention |
+| **Detect** | Custom Wazuh rule flags the pattern live, mapped to MITRE T1110.004 |
+| **Respond** | Automated timestamp logging measured the full detect-to-contain window |
+| **Recover** | Found and fixed a stale-alert-matching bug inflating results; recommended key-based SSH, auto-lockout, and MFA for production hardening |
+
+**Relevant to:** SOC Analyst · Incident Response · SIEM (Wazuh) · MITRE ATT&CK · Python · Detection Engineering · MTTR
