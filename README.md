@@ -32,8 +32,7 @@
 
 **Relevant to:** SOC Analyst · Incident Response · SIEM (Wazuh) · MITRE ATT&CK · Python · Detection Engineering · MTTR
 
-<details>
-<summary><strong>Full technical breakdown</strong></summary>
+## Full Technical Breakdown
 
 **Tech stack**
 
@@ -75,5 +74,3 @@ python3 triage_tool/mark_event.py <run_id> triaged
 python3 triage_tool/mark_event.py <run_id> contained
 sudo python3 triage_tool/generate_report.py
 ```
-
-</details>
