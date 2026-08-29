@@ -31,3 +31,49 @@
 | **Recover** | Found and fixed a stale-alert-matching bug inflating results; recommended key-based SSH, auto-lockout, and MFA for production hardening |
 
 **Relevant to:** SOC Analyst · Incident Response · SIEM (Wazuh) · MITRE ATT&CK · Python · Detection Engineering · MTTR
+
+<details>
+<summary><strong>Full technical breakdown</strong></summary>
+
+**Tech stack**
+
+| Layer | Tools |
+|---|---|
+| SIEM | Wazuh 4.14 (indexer, manager, dashboard) |
+| Attack simulation | Kali Linux, Hydra |
+| Automation | Python 3 |
+| Environment | VMware Workstation, Ubuntu 24.04 + Kali, both running real Wazuh agents |
+
+**The detection rule**
+```xml
+<rule id="100010" level="10" frequency="5" timeframe="60">
+  <if_matched_sid>5760</if_matched_sid>
+  <same_source_ip />
+  <description>5+ SSH authentication failures from same source within 60s, possible credential stuffing</description>
+  <mitre><id>T1110.004</id></mitre>
+</rule>
+```
+
+**Screenshots**
+![Dashboard](docs/screenshots/01-dashboard-overview.png)
+![MITRE mapping](docs/screenshots/02-mitre-dashboard-100010.png)
+![Alert events](docs/screenshots/03-alert-events-list.png)
+![Attack terminal](docs/screenshots/04-hydra-attack-terminal.png)
+![Report output](docs/screenshots/05-generate-report-output.png)
+![Detection rule](docs/screenshots/06-detection-rule-code.png)
+
+**All bugs hit and resolved**
+- Disk too small for Wazuh's full stack, resized and repartitioned
+- Wrong usernames in the attack list triggered the wrong rule entirely
+- Timezone mismatch crashed the timing script, made both sides UTC-aware
+- Stale alert matching silently inflated a result, fixed by matching each triage to the closest prior detection
+
+**Run it**
+```bash
+git clone https://github.com/aliffhazim/soc-mttr-lab
+python3 triage_tool/mark_event.py <run_id> triaged
+python3 triage_tool/mark_event.py <run_id> contained
+sudo python3 triage_tool/generate_report.py
+```
+
+</details>
