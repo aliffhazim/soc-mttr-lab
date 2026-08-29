@@ -10,3 +10,12 @@
 ## Architecture
 
 ![Architecture](docs/screenshots/00-architecture-diagram.png)
+
+## Results
+
+| Run | MTTR |
+|---|---|
+| hydra01 | 8s |
+| hydra02 | 2s |
+
+*Two runs, not a statistical trend, a real demonstration that response time is trainable.*
