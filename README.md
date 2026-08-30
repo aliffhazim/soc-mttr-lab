@@ -35,6 +35,8 @@ Engineered a Python pipeline to automatically measure response time end to end.
 | hydra01 | 8s |
 | hydra02 | 2s |
 
+**MTTR reduced by 74% (first run to most recent run)**
+
 *Two runs, not a statistical trend, a real demonstration that response time is trainable.*
 
 ---
