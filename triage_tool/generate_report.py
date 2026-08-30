@@ -1,3 +1,17 @@
+"""
+generate_report.py
+
+Takes every completed run (matched detect/triage/contain timestamps)
+and produces the final comparison: a markdown table plus a clearly
+labeled MTTR change between the first and most recent run. Writes the
+result to results/mttr_report.md, which is what gets pasted directly
+into the README's Results section.
+
+Shares its core matching logic with parse_alerts.py, this script adds
+the aggregation and file-writing step on top of the same detection
+matching used there.
+"""
+
 import json
 from datetime import datetime
 
@@ -31,6 +45,8 @@ def parse_time(ts):
     return datetime.fromisoformat(ts.replace("Z", "+00:00"))
 
 def closest_detection_before(detections, triaged_time):
+    """Same fix as parse_alerts.py: match to the closest prior detection,
+    not just the first one found in the log."""
     candidates = [d for d in detections if parse_time(d) <= triaged_time]
     return max(candidates, key=parse_time) if candidates else None
 
@@ -39,6 +55,7 @@ def main():
     timeline = load_timeline()
     rows = []
 
+    # Calculate total MTTR for every completed run
     for eid in sorted(timeline.keys()):
         triaged = parse_time(timeline[eid]["triaged"])
         contained = parse_time(timeline[eid]["contained"])
@@ -49,14 +66,20 @@ def main():
         total = (contained - detected).total_seconds()
         rows.append((eid, total))
 
+    # Build the markdown table
     lines = ["| Run | Total MTTR |", "|---|---|"]
     for eid, total in rows:
         lines.append(f"| {eid} | {total:.0f}s |")
 
+    # If there's more than one run, show the MTTR change, clearly
+    # labeled with direction and which two runs are being compared
     if len(rows) >= 2:
         first, last = rows[0][1], rows[-1][1]
         pct = ((first - last) / first) * 100
-        lines.append(f"\n**Change from first to last run: {pct:.0f}%**")
+        if pct >= 0:
+            lines.append(f"\n**MTTR reduced by {pct:.0f}% (first run to most recent run)**")
+        else:
+            lines.append(f"\n**MTTR increased by {abs(pct):.0f}% (first run to most recent run)**")
 
     report = "\n".join(lines)
     with open(REPORT_FILE, "w") as f:
