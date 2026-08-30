@@ -43,6 +43,7 @@ Engineered a Python pipeline to automatically measure response time end to end.
 
 | Function | What I Did |
 |---|---|
+| Govern | Scoped the project to one fully defensible, measurable scenario rather than several shallow ones, deliberately cutting lower-priority additions (off-hours escalation, a second attack type, third-party dataset validation) |
 | Identify | Researched current credential-stuffing prevalence to build a realistic, evidence-based scenario |
 | Protect | Tuned the detection threshold to 5 attempts/60s to avoid flagging genuine password mistakes, based on real-world lockout conventions |
 | Detect | Custom Wazuh rule flags the pattern live, mapped to MITRE T1110.004 |
