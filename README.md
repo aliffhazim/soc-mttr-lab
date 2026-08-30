@@ -1,4 +1,4 @@
-# SOC Incident Response Lab: Credential-Stuffing Detection
+# SOC Incident Response: Automated Credential-Stuffing Detection & Response
 
 **Cut simulated incident response time from 8 seconds to 2 seconds, using a detection rule I designed, tuned, and defended myself.**
 
