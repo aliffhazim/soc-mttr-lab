@@ -9,7 +9,7 @@
 ## Executive Summary
 
 **The problem: undetected credential-based intrusions are expensive, and the cost is mostly about speed.**
-> $1.88M cost gap between fast and slow breach containment. ([IBM, 2025](https://www.ibm.com/think/insights/data-matters/cost-of-a-data-breach))
+> Breaches contained in under 200 days cost $4.32M on average; those that ran longer cost $5.65M, a $1.33M gap. ([IBM Cost of a Data Breach Report 2026](https://www.ibm.com/reports/data-breach))
 
 **What I built: a live, two-machine attack simulation with a custom detection rule, measured end to end.**
 > A custom Wazuh rule mapped to MITRE ATT&CK T1110.004 (credential stuffing), built on Wazuh, a SIEM (Security Information and Event Management platform: it collects and correlates logs across a network to detect attacks in real time).
@@ -170,7 +170,7 @@ sudo python3 triage_tool/generate_report.py
 ---
 
 ## References
-- IBM Cost of a Data Breach Report 2025: https://www.ibm.com/think/insights/data-matters/cost-of-a-data-breach
+- IBM Cost of a Data Breach Report 2026: https://www.ibm.com/reports/data-breach
 - Dell Technologies, "How To Weather the Cyber Identity Crisis": https://www.dell.com/en-us/blog/how-to-weather-the-cyber-identity-crisis/
 - Journal of Petroleum Technology, alert-triage automation in energy/critical infrastructure: https://jpt.spe.org/oil-and-gas-data-multiply-so-do-cybersecurity-threats
 - MITRE ATT&CK, T1110.004 Credential Stuffing: https://attack.mitre.org/techniques/T1110/004/
