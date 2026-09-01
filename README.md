@@ -9,7 +9,7 @@
 ## Executive Summary
 
 **The problem: undetected credential-based intrusions are expensive, and the cost is mostly about speed.**
-> Breaches contained in under 200 days cost $4.32M on average; those that ran longer cost $5.65M, a $1.33M gap. ([IBM Cost of a Data Breach Report 2026](https://www.ibm.com/reports/data-breach))
+> Breaches contained in under 200 days cost $4.32M on average, compared to $5.65M for slower ones, a $1.33M gap. ([IBM Cost of a Data Breach Report 2026](https://www.ibm.com/reports/data-breach))
 
 **What I built: a live, two-machine attack simulation with a custom detection rule, measured end to end.**
 > A custom Wazuh rule mapped to MITRE ATT&CK T1110.004 (credential stuffing), built on Wazuh, a SIEM (Security Information and Event Management platform: it collects and correlates logs across a network to detect attacks in real time).
