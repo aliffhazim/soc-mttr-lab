@@ -94,7 +94,7 @@
 </rule>
 ```
 
-**Screenshots**
+**Evidence**
 
 <table>
 <tr>
