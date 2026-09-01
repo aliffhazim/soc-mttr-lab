@@ -10,8 +10,6 @@
 
 **The problem: undetected credential-based intrusions are expensive, and the cost is mostly about speed.**
 > $1.88M cost gap between fast and slow breach containment. ([IBM, 2025](https://www.ibm.com/think/insights/data-matters/cost-of-a-data-breach))
->
-> Large hardware vendors are addressing this directly through hardware-based credential protection and passwordless strategies. ([Dell Technologies](https://www.dell.com/en-us/blog/how-to-weather-the-cyber-identity-crisis/))
 
 **What I built: a live, two-machine attack simulation with a custom detection rule, measured end to end.**
 > A custom Wazuh rule mapped to MITRE ATT&CK T1110.004 (credential stuffing), built on Wazuh, a SIEM (Security Information and Event Management platform: it collects and correlates logs across a network to detect attacks in real time).
@@ -19,9 +17,16 @@
 > A Python pipeline automatically measures response time from detection to containment, no manual stopwatch.
 
 **The impact: detect-to-contain time cut from 8s to 2s, backed by real logs, not estimates.**
-> A Schlumberger security lead described this exact triage-speed problem at enterprise scale. ([JPT](https://jpt.spe.org/oil-and-gas-data-multiply-so-do-cybersecurity-threats)) This project is a small, hands-on version of that exact same challenge.
->
 > Credential stuffing targets anything with a login. This scenario used SSH, but the same detect-and-contain logic applies to VPNs, admin panels, and cloud consoles, not just this one protocol.
+
+**Why it matters at Dell, SLB, and Siemens Energy specifically:**
+> Dell is addressing credential-based attacks directly, through hardware-based credential protection and passwordless strategies. ([Dell Technologies](https://www.dell.com/en-us/blog/how-to-weather-the-cyber-identity-crisis/))
+>
+> A Schlumberger security lead described this exact triage-speed problem at enterprise scale, this project is a small, hands-on version of that same challenge. ([JPT](https://jpt.spe.org/oil-and-gas-data-multiply-so-do-cybersecurity-threats))
+>
+> Siemens Energy's own cybersecurity page lists insecure employee behavior among the risks facing industrial and IIoT systems, the same human-factor gap credential stuffing exploits. ([Siemens Energy](https://www.siemens-energy.com/global/en/home/company/cybersecurity.html))
+>
+> These three are examples, not the limit: any company with a login and a SOC has this exact detection-speed problem.
 
 ---
 
