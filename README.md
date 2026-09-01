@@ -7,14 +7,21 @@
 ---
 
 ## Executive Summary
-- **The problem:** Undetected credential-based intrusions are expensive.<br>
-[IBM's 2025 breach research](https://www.ibm.com/think/insights/data-matters/cost-of-a-data-breach) puts a $1.88M cost gap between fast and slow containment. It's also a theme large hardware vendors are addressing directly, [through hardware-based credential protection and passwordless strategies](https://www.dell.com/en-us/blog/how-to-weather-the-cyber-identity-crisis/).
 
-- **What I built:** A live, two-machine attack simulation with a custom detection rule mapped to [MITRE ATT&CK T1110.004](https://attack.mitre.org/techniques/T1110/004/), built on Wazuh, a SIEM (Security Information and Event Management platform).<br>
-Engineered a Python pipeline to automatically measure response time end to end.
+**The problem: undetected credential-based intrusions are expensive, and the cost is mostly about speed.**
+> $1.88M cost gap between fast and slow breach containment. ([IBM, 2025](https://www.ibm.com/think/insights/data-matters/cost-of-a-data-breach))
+>
+> Large hardware vendors are addressing this directly through hardware-based credential protection and passwordless strategies. ([Dell Technologies](https://www.dell.com/en-us/blog/how-to-weather-the-cyber-identity-crisis/))
 
-- **The impact:** Detect-to-contain time cut from 8s to 2s, backed by real logs, not estimates.<br>
-[A Schlumberger security lead described the same triage-speed problem](https://jpt.spe.org/oil-and-gas-data-multiply-so-do-cybersecurity-threats) at enterprise scale, this project is a small, hands-on version of that exact challenge.
+**What I built: a live, two-machine attack simulation with a custom detection rule, measured end to end.**
+> A custom Wazuh rule mapped to MITRE ATT&CK T1110.004 (credential stuffing), built on Wazuh, a SIEM (Security Information and Event Management platform: it collects and correlates logs across a network to detect attacks in real time).
+>
+> A Python pipeline automatically measures response time from detection to containment, no manual stopwatch.
+
+**The impact: detect-to-contain time cut from 8s to 2s, backed by real logs, not estimates.**
+> A Schlumberger security lead described this exact triage-speed problem at enterprise scale. ([JPT](https://jpt.spe.org/oil-and-gas-data-multiply-so-do-cybersecurity-threats)) This project is a small, hands-on version of that same challenge.
+>
+> Credential stuffing targets anything with a login. This scenario used SSH, but the same detect-and-contain logic applies to VPNs, admin panels, and cloud consoles, not just this one protocol.
 
 ---
 
@@ -41,14 +48,16 @@ Engineered a Python pipeline to automatically measure response time end to end.
 
 ---
 
-## Response Lifecycle ([NIST CSF 2.0](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf))
+## Response Lifecycle (NIST CSF 2.0)
+
+*NIST CSF 2.0: the U.S. National Institute of Standards and Technology's cybersecurity framework, six functions that structure how a security team handles a threat from start to finish. Used here to organize what I actually did, not just to name-drop a standard.*
 
 | Function | What I Did |
 |---|---|
 | Govern | Scoped the project to one fully defensible, measurable scenario rather than several shallow ones, deliberately cutting lower-priority additions (off-hours escalation, a second attack type, third-party dataset validation) |
 | Identify | Researched current credential-stuffing prevalence to build a realistic, evidence-based scenario |
 | Protect | Tuned the detection threshold to 5 attempts/60s to avoid flagging genuine password mistakes, based on real-world lockout conventions |
-| Detect | Custom Wazuh rule flags the pattern live, mapped to MITRE T1110.004 |
+| Detect | Custom Wazuh rule flags the pattern live, mapped to MITRE ATT&CK T1110.004 |
 | Respond | Automated timestamp logging measured the full detect-to-contain window |
 | Recover | Found and fixed a bug where response times were measured against the wrong detection event, causing inflated results. Recommended key-based SSH, auto-lockout, and MFA for production hardening. |
 
@@ -68,6 +77,9 @@ Engineered a Python pipeline to automatically measure response time end to end.
 | Environment | VMware Workstation, Ubuntu 24.04 + Kali, both running real Wazuh agents |
 
 **The detection rule**
+
+*MITRE ATT&CK: the industry-standard, publicly maintained catalog of real-world attack techniques. T1110.004 is the ID for credential stuffing specifically, mapping this rule to a technique any SOC analyst would recognize.*
+
 ```xml
 <rule id="100010" level="10" frequency="5" timeframe="60">
   <if_matched_sid>5760</if_matched_sid>
@@ -114,8 +126,8 @@ sudo python3 triage_tool/generate_report.py
 ---
 
 ## References
-- IBM Cost of a Data Breach Report 2025 — https://www.ibm.com/think/insights/data-matters/cost-of-a-data-breach
-- Dell Technologies, "How To Weather the Cyber Identity Crisis" — https://www.dell.com/en-us/blog/how-to-weather-the-cyber-identity-crisis/
-- Journal of Petroleum Technology, alert-triage automation in energy/critical infrastructure — https://jpt.spe.org/oil-and-gas-data-multiply-so-do-cybersecurity-threats
-- MITRE ATT&CK, T1110.004 Credential Stuffing — https://attack.mitre.org/techniques/T1110/004/
-- NIST SP 800-61r3, Incident Response Recommendations (CSF 2.0) — https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf
+- IBM Cost of a Data Breach Report 2025: https://www.ibm.com/think/insights/data-matters/cost-of-a-data-breach
+- Dell Technologies, "How To Weather the Cyber Identity Crisis": https://www.dell.com/en-us/blog/how-to-weather-the-cyber-identity-crisis/
+- Journal of Petroleum Technology, alert-triage automation in energy/critical infrastructure: https://jpt.spe.org/oil-and-gas-data-multiply-so-do-cybersecurity-threats
+- MITRE ATT&CK, T1110.004 Credential Stuffing: https://attack.mitre.org/techniques/T1110/004/
+- NIST SP 800-61r3, Incident Response Recommendations (CSF 2.0): https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf
