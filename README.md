@@ -19,7 +19,7 @@
 > A Python pipeline automatically measures response time from detection to containment, no manual stopwatch.
 
 **The impact: detect-to-contain time cut from 8s to 2s, backed by real logs, not estimates.**
-> A Schlumberger security lead described this exact triage-speed problem at enterprise scale. ([JPT](https://jpt.spe.org/oil-and-gas-data-multiply-so-do-cybersecurity-threats)) This project is a small, hands-on version of that same challenge.
+> A Schlumberger security lead described this exact triage-speed problem at enterprise scale. ([JPT](https://jpt.spe.org/oil-and-gas-data-multiply-so-do-cybersecurity-threats)) This project is a small, hands-on version of that exact same challenge.
 >
 > Credential stuffing targets anything with a login. This scenario used SSH, but the same detect-and-contain logic applies to VPNs, admin panels, and cloud consoles, not just this one protocol.
 
@@ -50,7 +50,7 @@
 
 ## Response Lifecycle (NIST CSF 2.0)
 
-*NIST CSF 2.0: the U.S. National Institute of Standards and Technology's cybersecurity framework, six functions that structure how a security team handles a threat from start to finish. Used here to organize what I actually did, not just to name-drop a standard.*
+> NIST CSF 2.0: the U.S. National Institute of Standards and Technology's cybersecurity framework, six functions that structure how a security team handles a threat from start to finish, used here to organize what I actually did. ([NIST SP 800-61r3](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf))
 
 | Function | What I Did |
 |---|---|
@@ -78,7 +78,7 @@
 
 **The detection rule**
 
-*MITRE ATT&CK: the industry-standard, publicly maintained catalog of real-world attack techniques. T1110.004 is the ID for credential stuffing specifically, mapping this rule to a technique any SOC analyst would recognize.*
+> MITRE ATT&CK: the industry-standard, publicly maintained catalog of real-world attack techniques. T1110.004 is the ID for credential stuffing specifically, mapping this rule to a technique any SOC analyst would recognize. ([MITRE](https://attack.mitre.org/techniques/T1110/004/))
 
 ```xml
 <rule id="100010" level="10" frequency="5" timeframe="60">
@@ -91,23 +91,56 @@
 
 **Screenshots**
 
+<table>
+<tr>
+<td width="50%">
+
+**Figure 1: Wazuh dashboard**
+Live agent connected, real alert volume.
 ![Dashboard](docs/screenshots/01-dashboard-overview.png)
-*Figure 1: Wazuh dashboard, live agent connected, real alert volume.*
 
+</td>
+<td width="50%">
+
+**Figure 2: MITRE ATT&CK mapping**
+Alerts filtered to rule 100010, confirming Credential Stuffing.
 ![MITRE mapping](docs/screenshots/02-mitre-dashboard-100010.png)
-*Figure 2: Alerts filtered to rule 100010, MITRE ATT&CK panel confirming Credential Stuffing.*
 
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+**Figure 3: Alert events**
+Six real detections with timestamps, the raw evidence behind Figure 2.
 ![Alert events](docs/screenshots/03-alert-events-list.png)
-*Figure 3: Six real detections with timestamps, the raw evidence behind Figure 2's chart.*
 
+</td>
+<td width="50%">
+
+**Figure 4: The attack itself**
+Credential-stuffing attack launched from Kali against the target.
 ![Attack terminal](docs/screenshots/04-hydra-attack-terminal.png)
-*Figure 4: The actual credential-stuffing attack, launched from Kali against the target.*
 
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+**Figure 5: Automated report**
+`generate_report.py` producing the real 8s-to-2s comparison.
 ![Report output](docs/screenshots/05-generate-report-output.png)
-*Figure 5: generate_report.py producing the real 8s-to-2s comparison automatically.*
 
+</td>
+<td width="50%">
+
+**Figure 6: The detection rule**
+The custom Wazuh rule, confirmed directly from the file.
 ![Detection rule](docs/screenshots/06-detection-rule-code.png)
-*Figure 6: The custom Wazuh rule itself, confirmed directly from the file.*
+
+</td>
+</tr>
+</table>
 
 **All bugs hit and resolved**
 - Disk too small for Wazuh's full stack, resized and repartitioned
