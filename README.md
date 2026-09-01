@@ -94,7 +94,7 @@
 </rule>
 ```
 
-**Evidence**
+**Screenshots**
 
 <table>
 <tr>
@@ -160,6 +160,9 @@ The custom Wazuh rule, confirmed directly from the file.
 - Stale alert matching silently inflated a result, fixed by matching each triage to the closest prior detection
 
 **Run it**
+
+Requires two machines: an Ubuntu 24.04 victim machine running a Wazuh agent (the SSH target being attacked) and a separate Kali Linux attacker machine with Hydra installed. Launch the credential-stuffing attack from Kali against the Ubuntu victim first, that's what generates the Wazuh alert and the `<run_id>` used below.
+
 ```bash
 git clone https://github.com/aliffhazim/soc-mttr-lab
 python3 triage_tool/mark_event.py <run_id> triaged
