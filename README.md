@@ -95,15 +95,17 @@
 <tr>
 <td width="50%">
 
-**Figure 1: Wazuh dashboard**
+**Figure 1: Wazuh dashboard**<br>
 Live agent connected, real alert volume.
+
 ![Dashboard](docs/screenshots/01-dashboard-overview.png)
 
 </td>
 <td width="50%">
 
-**Figure 2: MITRE ATT&CK mapping**
+**Figure 2: MITRE ATT&CK mapping**<br>
 Alerts filtered to rule 100010, confirming Credential Stuffing.
+
 ![MITRE mapping](docs/screenshots/02-mitre-dashboard-100010.png)
 
 </td>
@@ -111,15 +113,17 @@ Alerts filtered to rule 100010, confirming Credential Stuffing.
 <tr>
 <td width="50%">
 
-**Figure 3: Alert events**
+**Figure 3: Alert events**<br>
 Six real detections with timestamps, the raw evidence behind Figure 2.
+
 ![Alert events](docs/screenshots/03-alert-events-list.png)
 
 </td>
 <td width="50%">
 
-**Figure 4: The attack itself**
+**Figure 4: The attack itself**<br>
 Credential-stuffing attack launched from Kali against the target.
+
 ![Attack terminal](docs/screenshots/04-hydra-attack-terminal.png)
 
 </td>
@@ -127,15 +131,17 @@ Credential-stuffing attack launched from Kali against the target.
 <tr>
 <td width="50%">
 
-**Figure 5: Automated report**
+**Figure 5: Automated report**<br>
 `generate_report.py` producing the real 8s-to-2s comparison.
+
 ![Report output](docs/screenshots/05-generate-report-output.png)
 
 </td>
 <td width="50%">
 
-**Figure 6: The detection rule**
+**Figure 6: The detection rule**<br>
 The custom Wazuh rule, confirmed directly from the file.
+
 ![Detection rule](docs/screenshots/06-detection-rule-code.png)
 
 </td>
